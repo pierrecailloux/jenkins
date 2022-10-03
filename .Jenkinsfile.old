@@ -3,15 +3,13 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                sh 'apt update'
-                sh 'apt install golang-go -y '
+                sh '''apt update '''
+                sh '''apt install golang-go  -y '''
+                sh ''' go run main.go'''
             }
         }
-
-        stage('archive') {
+        stage ('Archive build output') {
             steps {
                 archiveArtifacts artifacts: 'main.go', followSymlinks: false
             }
-        }
-    }
-}
+
