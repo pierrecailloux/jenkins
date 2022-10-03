@@ -1,9 +1,17 @@
-node {
-    stage "build"
-    build 'Hello_World_Piepline'
-    sh '''apt update '''
-    sh '''apt install golang-go  -y '''
-    sh ''' go run main.go'''
-    stage "Archive build output"
-    archiveArtifacts artifacts: 'main.go', followSymlinks: false
+pipeline {
+    agent any
+    stages {
+        stage('build') {
+            steps {
+                sh 'apt update'
+                sh 'apt install golang-go -y '
+            }
+        }
+
+        stage('archive') {
+            steps {
+                archiveArtifacts artifacts: 'main.go', followSymlinks: false
+            }
+        }
+    }
 }
