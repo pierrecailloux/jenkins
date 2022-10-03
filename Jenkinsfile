@@ -1,19 +1,17 @@
-pipeline { 
-    agent any 
+pipeline {
+    agent any
     stages {
-        stage('Build') { 
-            steps { 
+        stage('Build') {
+            steps {
                 sh '''apt update '''
                 sh '''apt install golang-go  -y '''
                 sh ''' go run main.go'''
             }
         }
-        stage('Archive'){
+        stage('Archive') {
             steps {
                 archiveArtifacts artifacts: 'main.go', followSymlinks: false
-
             }
         }
-
     }
 }
