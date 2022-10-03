@@ -1,7 +1,7 @@
 pipeline {
     agent any
     stages {
-        stage('Build') {
+        stage('Build dev ') {
             steps {
                 sh '''apt update '''
                 sh '''apt install golang-go  -y '''
